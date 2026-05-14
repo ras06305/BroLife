@@ -327,7 +327,12 @@ app.get('/debug', (req, res) => {
     const files = fs.readdirSync(path.join(__dirname, 'client'));
     res.json({ files: files });
 });
-// ============ СТАТИЧЕСКИЕ ФАЙЛЫ (В САМОМ КОНЦЕ) ============
+
+// ============ СТАТИЧЕСКИЕ ФАЙЛЫ ============
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'index.html'));
+});
+
 app.use(express.static(path.join(__dirname, 'client')));
 
 // ============ ЗАПУСК ============
