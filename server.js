@@ -322,7 +322,11 @@ io.on('connection', socket => {
         }
     });
 });
-
+app.get('/debug', (req, res) => {
+    const fs = require('fs');
+    const files = fs.readdirSync(path.join(__dirname, 'client'));
+    res.json({ files: files });
+});
 // ============ СТАТИЧЕСКИЕ ФАЙЛЫ (В САМОМ КОНЦЕ) ============
 app.use(express.static(path.join(__dirname, 'client')));
 
